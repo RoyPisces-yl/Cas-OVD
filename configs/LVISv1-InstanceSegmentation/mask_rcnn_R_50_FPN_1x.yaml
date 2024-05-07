@@ -1,0 +1,23 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 9
+    SCORE_THRESH_TEST: 0.0001
+INPUT:
+  MIN_SIZE_TRAIN: (800, 800)
+DATASETS:
+  TRAIN: ("soda_train_seen.json",)
+  TEST: ("soda_test_all.json",)
+TEST:
+  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300
+  EVAL_PERIOD: 50000
+SOLVER:
+  STEPS: (120000, 160000)
+  MAX_ITER: 180000  # 180000 * 16 / 100000 ~ 28.8 epochs
+DATALOADER:
+  SAMPLER_TRAIN: "RepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.001
