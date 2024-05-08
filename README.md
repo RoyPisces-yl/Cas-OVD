@@ -19,4 +19,4 @@ cd COVD
 python -m pip install -e RegionCLIP
 ```
 
-Related weights file downloads:https://pan.baidu.com/s/1MuQsbMAETPOunkgZPuq4sg?pwd=2000
+Related weights file downloads:https://drive.google.com/drive/folders/1i1jAzfD2tAVwHNzd2qIdexYNEg1IUEhd?usp=drive_link
