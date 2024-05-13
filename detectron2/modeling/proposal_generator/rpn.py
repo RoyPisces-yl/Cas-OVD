@@ -64,7 +64,7 @@ def build_rpn_head(cfg, input_shape):
     name = cfg.MODEL.RPN.HEAD_NAME
     return RPN_HEAD_REGISTRY.get(name)(cfg, input_shape)
 
-class MaskedDeformable_FeatureAdaption(nn.Module):
+class FeatureConversion(nn.Module):
     """Feature Adaption Module.
 
     Feature Adaption Module is implemented based on DCN v2.
@@ -84,7 +84,7 @@ class MaskedDeformable_FeatureAdaption(nn.Module):
                  groups=1,
                  deformable_groups=2
                  ):
-        super(MaskedDeformable_FeatureAdaption, self).__init__()
+        super(FeatureConversion, self).__init__()
         offset_channels = kernel_size * kernel_size * 2
         mask_channels = kernel_size * kernel_size
         self.conv_offset = nn.Conv2d(
@@ -150,7 +150,7 @@ class StandardRPNHead(nn.Module):
             self.convs = [self.conv0, self.conv1]
             cur_channels = out_channels
 
-        self.feature_adaptions = nn.ModuleList([MaskedDeformable_FeatureAdaption(
+        self.feature_adaptions = nn.ModuleList([FeatureConversion(
             in_channels,
             cur_channels,
             kernel_size=3,
