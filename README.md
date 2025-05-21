@@ -20,5 +20,6 @@ python -m pip install -e RegionCLIP
 ```
 
 Related weights file downloads:https://drive.google.com/drive/folders/1i1jAzfD2tAVwHNzd2qIdexYNEg1IUEhd?usp=drive_link
+Some weights will be uploaded at a later date.
 
 If you have any questions, please contact yulongroy@gmail.com
